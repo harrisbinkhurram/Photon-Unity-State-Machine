@@ -9,3 +9,12 @@ You're free to contribute and make it better. If you fork out and comb it up ple
 
 
 Open to discussions create a ticket/issue or discussion thread here or send me an email at harrisbinkhurram at gmail.
+
+
+Put these in your unity Project. Drop PhotonConnection.prefab in your loading scene, When you're ready connect,
+
+Do the following:
+
+StateMachine.MakeTransisition(typeof(StateInitialize));
+
+make changes to files as required.
