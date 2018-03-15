@@ -78,7 +78,7 @@ namespace M3PUN {
                     Helpers.Utility.LogMessage("StateOnlineBattle DoCannotDoBattle: disconnected before battle begins");
                     if(VersusScreen.Instance.AnimContainer.isActiveAndEnabled) {
                         VersusScreen.Instance.RestartAnimation();
-                        DoOfflineBattle();
+                        DoOfflineBattleAfterReload();
                     } else {
                         battleField.Invoke("WeDisconnected", 1f);
                     }
