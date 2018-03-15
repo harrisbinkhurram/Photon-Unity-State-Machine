@@ -15,7 +15,7 @@ namespace M3PUN {
             base.OnStateEnter();
             challengeMode = Utils.STR_PRIVATE;
             ConnectionController.Instance.M3OnJoinedRoom += _onJoinedRoom;
-            ConnectionController.Instance.M3OnJoinedLobby += _onJoinedLobby;
+            ConnectionController.Instance.M3OnLeftLobby += _onLeftLobby;
             ConnectionController.Instance.M3OnPhotonJoinRoomFailed += _onJoinRoomFailed;
             
 
@@ -54,7 +54,7 @@ namespace M3PUN {
         
         public override void OnStateExit() {
             ConnectionController.Instance.M3OnJoinedRoom -= _onJoinedRoom;
-            ConnectionController.Instance.M3OnJoinedLobby -= _onJoinedLobby;
+            ConnectionController.Instance.M3OnLeftLobby -= _onLeftLobby;
             ConnectionController.Instance.M3OnPhotonJoinRoomFailed -= _onJoinRoomFailed;
 
 
@@ -204,16 +204,18 @@ namespace M3PUN {
             if(disconnectionCause == DisconnectCause.AuthenticationTicketExpired || disconnectionCause == DisconnectCause.InvalidAuthentication) {
                 //do nothing
             } else {
-                if(!ConnectionController.Instance.insideLobby) {
-                    DoJoinLobby();
+                if(findBattlePartner) {
+                    StateMachine.Instance.MakeTransition(typeof(StateRandomMatchMakingSearch));
+                } else if(ConnectionController.Instance.insideLobby) { //we should not be inside a lobby at this point.
+                    ConnectionController.Instance.LeaveLobby();
                 } else {
-                    _onJoinedLobby();
+                    _onLeftLobby();
                 }
             }
             base._onConnectedToMaster();
 
         }
-        void _onJoinedLobby() {
+        void _onLeftLobby() {
             if(!ConnectionController.Instance.inRoom) {
                 DoInitNewRoomOptionsAndJoinRoom();
             } else {
