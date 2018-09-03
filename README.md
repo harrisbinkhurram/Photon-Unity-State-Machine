@@ -1,5 +1,7 @@
 # PhotonUnityTemplate
 
+#Photon Unity Netowrk Example Code
+
 An Example starting point of how to integrate Photon in your project. This is straight out of my current project, so a few refrences to other classes are here.
 
 I'll be updating in coming days. This is not perfect or ideal design, has few dependencies on my current project. If you find it useful, contribute and share your experience.
