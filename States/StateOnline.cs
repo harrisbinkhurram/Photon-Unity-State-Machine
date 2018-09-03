@@ -13,7 +13,7 @@ namespace M3PUN {
         }
         
         public override void OnStateExit() {
-            Events.EventManager.Instance.FindBattlePartnerHandler += _OnFindBattlePartner;
+            Events.EventManager.Instance.FindBattlePartnerHandler -= _OnFindBattlePartner;
             base.OnStateExit();
         }
 
