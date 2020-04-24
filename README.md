@@ -1,4 +1,4 @@
-# PhotonUnityTemplate
+# Photon Unity State Machine
 
 #Photon Unity Netowrk Example Code
 
